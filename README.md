@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/dackboard/dackboard-server/badge.svg?branch=master)](https://coveralls.io/github/dackboard/dackboard-server?branch=master)
+[![Build Status](https://travis-ci.org/dackboard/dackboard-server.svg?branch=master)](https://travis-ci.org/dackboard/dackboard-server)
 # Dackboard-Server
 
 Dackboard is a modern platform that allows anyone to create games or tournaments for Dart games.  
