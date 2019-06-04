@@ -1,5 +1,15 @@
 {
     "compilerOptions": {
         "sourceMap": true
-    }
+    },
+    "exclude": [
+        "node_modules",
+        ".vscode"
+    ],
+    "lib": [
+        "es2015"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ],
 }

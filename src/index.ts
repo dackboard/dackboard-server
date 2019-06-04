@@ -1,10 +1,19 @@
 import * as express from 'express';
 import api from './api';
 import config from '../config/config';
+import * as morgan from 'morgan';
+import * as bodyParser from 'body-parser';
 
-const app = express();
+const app: express.Express = express();
 
-const PORT = process.env.PORT || config.server.port;
+const PORT: number = parseInt(process.env.PORT) || config.server.port;
+
+// use logger
+app.use(morgan('dev'));
+// parse url-encoded bodies
+app.use(bodyParser.urlencoded({extended: false}));
+// parse json-bodies
+app.use(bodyParser.json());
 
 app.use('/api/', api);
 

@@ -1,23 +1,22 @@
-import * as express from 'express';
+import { Router } from 'express';
 import { Request, Response } from 'express';
+import RouteStatus from './routes/status';
+import RouteUser from './routes/user';
 
-const api = express();
+const apiRouter: Router = Router();
 
 // add api specific middleware here
-api.get('/', (req: Request, res: Response) => {
+apiRouter.get('/', (req: Request, res: Response) => {
 
     res.send({
-        message: 'Hello from the API'
+        message: 'Hello from the APIv'
     });
 
 });
 
-// route /status
-// displays various information about the server and the database
-api.get('/', (req: Request, res: Response) => {
+// Server status route
+apiRouter.use('/status', RouteStatus);
+// User management
+apiRouter.use('/user', RouteUser);
 
-    
-
-});
-
-export default api;
+export default apiRouter;
