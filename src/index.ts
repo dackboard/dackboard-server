@@ -1,15 +1,12 @@
 import * as express from 'express';
-import { Request, Response } from 'express';
+import api from './api';
+import config from '../config/config';
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || config.server.port;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send({
-        message: 'hello world'
-    });
-});
+app.use('/api/', api);
 
 // only start server if file is executed and not only imported
 // prevents jest from not shutting down because a server is still open
