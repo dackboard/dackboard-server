@@ -43,7 +43,7 @@ export function postAdd(req: Request, res: Response) {
             if(err) {
                 console.error(err);
                 res.status(500).json({
-                    error: "Internal Server Error"
+                    error: "INTERNAL_SERVER_ERROR"
                 });
 
             // hashing successful
