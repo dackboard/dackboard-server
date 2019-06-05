@@ -7,10 +7,12 @@ class PropFilter {
      * @param inputObject {object} - Any object
      * @param propertyList {array<string>} - A list of key the new object should keep
      */
-    public static filter(inputObject, propertyList: Array<string>) {
+    public static filter(inputObject, propertyList: Array<string>, autoRemoveNull: boolean = false) {
         let newObject = {};
         for(let property of propertyList) {
-            newObject[property] = inputObject[property];
+            if(!(autoRemoveNull && inputObject[property] === null)) {
+                newObject[property] = inputObject[property];
+            }
         }
         return newObject;
     }

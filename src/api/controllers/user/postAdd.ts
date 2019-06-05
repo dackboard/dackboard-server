@@ -3,6 +3,7 @@ import User from '../../models/UserSchema';
 import * as bcrypt from 'bcrypt';
 import config from '../../../../config/config';
 import DataValidator from '../../helpers/DataValidator';
+import * as mongoose from 'mongoose';
 
 // POST /user/add
 export function postAdd(req: Request, res: Response) {
@@ -52,6 +53,7 @@ export function postAdd(req: Request, res: Response) {
 
                 // create the new user
                 const newUser = new User({
+                    _id:  new mongoose.Types.ObjectId(),
                     name: name,
                     email: email,
                     passwordHash: hash,

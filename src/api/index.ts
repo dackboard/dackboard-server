@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
+
 import RouteStatus from './routes/status';
 import RouteUser from './routes/user';
 import RouteAuthenticate from './routes/authenticate';
+import PlayerRouter from './routes/player';
+
 import config from '../../config/config';
 
 const apiRouter: Router = Router();
@@ -76,6 +79,7 @@ apiRouter.use((req: Request|any, res: Response, next) => {
 //
 //  PRIVATE ROUTES
 //
+apiRouter.use('/player', PlayerRouter);
 
 
 export default apiRouter;

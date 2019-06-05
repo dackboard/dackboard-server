@@ -1,16 +1,15 @@
-import mongoose, { Schema } from 'mongoose';
+import * as mongoose from 'mongoose';
 
-const PlayerSchema: Schema = new Schema({
+const PlayerSchema: mongoose.Schema = new mongoose.Schema({
 
     _id: {
-        type: Schema.Types.ObjectId,
-        default: new mongoose.Types.ObjectId()
+        type: mongoose.Schema.Types.ObjectId
     },
 
     // The owner's user id
     // @ref: user._id
     owner_id: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     // the users nickname
@@ -38,6 +37,11 @@ const PlayerSchema: Schema = new Schema({
     county: {
         type: String,
         default: null
+    },
+    // time of creation
+    createdAt: {
+        type: Number,
+        default: Date.now()
     }
 
 });
