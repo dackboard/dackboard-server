@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { postAdd } from '../controllers/user/add';
+import { postAdd } from '../controllers/user/postAdd';
 
 const userRouter: Router = Router();
 

@@ -1,9 +1,9 @@
-import mongoose, { Schema } from 'mongoose';
+import * as mongoose from 'mongoose';
 
-const UserSchema: Schema = new Schema({
+const UserSchema: mongoose.Schema = new mongoose.Schema({
 
     _id: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         default: new mongoose.Types.ObjectId()
     },
     // The username required to login
@@ -19,7 +19,7 @@ const UserSchema: Schema = new Schema({
         unique: true
     },
     // Password digest
-    passwordDigest: {
+    passwordHash: {
         type: String,
         required: true
     },
@@ -54,7 +54,8 @@ const UserSchema: Schema = new Schema({
         of: {
             ipAddress: { type: String },
             timestamp: { type: Number, default: Date.now() }
-        }
+        },
+        default: new Map([])
     },
     // if user is banned, he's blocked from logging in
     // and displayed banMessage
@@ -105,6 +106,11 @@ const UserSchema: Schema = new Schema({
     },
     // the 2fa secret
     twoFactorToken: {
+        type: String,
+        default: null
+    },
+    // ip of registration
+    registrationIpAddress: {
         type: String,
         default: null
     }
