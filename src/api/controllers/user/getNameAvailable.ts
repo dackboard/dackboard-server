@@ -18,6 +18,7 @@ export function getNameAvailable(req: Request, res: Response ) {
         if( !DataValidator.isLengthBetween(name, 3, 32)) { isAvailable = false;info="NAME_INVALID"; }
 
         res.status(200).json({
+            success: true,
             name,
             isAvailable,
             info
@@ -26,7 +27,8 @@ export function getNameAvailable(req: Request, res: Response ) {
     }).catch( err => {
 
         res.status(500).json({
-            error: 'INTERNAL_SERVER_ERROR'
+            success: false,
+            message: 'INTERNAL_SERVER_ERROR'
         });
     });
 

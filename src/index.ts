@@ -32,7 +32,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse json-bodies
 app.use(bodyParser.json());
 
+// Allow CORS
+app.use((req, res, next) => {
 
+    // Load Headers from config
+    for (const header in config.api.headers) {
+        res.header(header, config.api.headers[header]);
+    }
+
+    // Options request
+    if (req.method === 'OPTIONS') {
+
+        res.header('Access-Control-Allow-Methods',
+        'GET, POST, PUT, PATCH, DELETE'
+        );
+
+        return res.status(200).json({});
+    }
+
+    next();
+
+});
 
 app.use('/api/', api);
 

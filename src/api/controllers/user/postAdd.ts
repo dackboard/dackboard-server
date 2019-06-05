@@ -29,7 +29,7 @@ export function postAdd(req: Request, res: Response) {
     if( !dataIsValid.email || !dataIsValid.name || !dataIsValid.password ) {
         res.status(200).json({
             success: false,
-            error: 'DATA_INVALID',
+            message: 'DATA_INVALID',
             dataIsValid
         })
 
@@ -43,7 +43,8 @@ export function postAdd(req: Request, res: Response) {
             if(err) {
                 console.error(err);
                 res.status(500).json({
-                    error: "INTERNAL_SERVER_ERROR"
+                    success: false,
+                    message: "INTERNAL_SERVER_ERROR"
                 });
 
             // hashing successful
@@ -71,13 +72,14 @@ export function postAdd(req: Request, res: Response) {
                         if( err.code === 11000) {
                             res.status(200).json({
                                 success: false,
-                                error: 'CREDENTIALS_IN_USE'
+                                message: 'CREDENTIALS_IN_USE'
                             })
                         // Internal server error
                         } else {
                             console.error('Error creating User', err);
                             res.status(500).json({
-                                error: 'INTERNAL_SERVER_ERROR'
+                                success: false,
+                                message: 'INTERNAL_SERVER_ERROR'
                             })
                         }
                     });

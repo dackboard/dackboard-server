@@ -5,7 +5,6 @@ import DataValidator from '../../helpers/DataValidator';
 export function getEmailAvailable(req: Request, res: Response ) {
 
     const email: string = req.params.email;
-    console.log("params", req.params);
 
     UserSchema.findOne({
         email
@@ -18,6 +17,7 @@ export function getEmailAvailable(req: Request, res: Response ) {
         if( !DataValidator.isValidEmail(email)) { isAvailable = false;info="EMAIL_INVALID"; }
 
         res.status(200).json({
+            success: true,
             email,
             isAvailable,
             info
@@ -27,7 +27,8 @@ export function getEmailAvailable(req: Request, res: Response ) {
 
         console.error(err);
         res.status(500).json({
-            error: 'INTERNAL_SERVER_ERROR'
+            success: false,
+            message: 'INTERNAL_SERVER_ERROR'
         });
     });
 
